@@ -1,0 +1,100 @@
+% FILE macros.movies, Definitions for Movies stuff, 
+% Master at [earth.stanford.edu]../gio/mov
+
+% field definitions
+\def\Tm{\M}        % title   set equal to \Z in casts
+\def\Pr{\S}        % producer
+\def\PrF{\S}       % producer with full name
+\def\PrU{\S}       % producer with full name
+\def\St{\S}        % studio
+\def\Ro{\M}        % role
+\def\Di{\S}	   % director
+\def\DiF{\S}	   % director with full name
+\def\Dtr{ Dtr:}        % distributor
+\def\Dir{\secbreak} %director heading
+
+\def\secbreak{\noalign{\vskip-6pt plus4pt minus1pt}&\hrulefill\cr}
+\def\secspace{\noalign{\vskip-6pt plus4pt minus1pt}&\cr}
+\def\secshrink{\noalign{\vskip-6pt plus4pt minus1pt}}
+\def\nextline#1{\hskip-300pt\lower12pt\hbox to 300pt{#1\Tstrut\hfil}}
+% Abbreviations from MOVIES.TEX
+% processes
+% col, b-w, sbw (silent b-w), cld (b-w colored), car (cartoon)
+%
+% categories      CTxx (uncategorized)
+% Dram (drama), Romt (romantic),
+% Susp (thriller), West (western), Myst (mystery), CnR (Cops and Robbers)
+% S.F. (science fiction), Advt (adventure), Horr (horror), 
+% Comd (comedy), Musc (musical),  Docu (documentary), Porn (pornography);
+%
+% TV (tv show), TVs (tv series), TVm (tv miniseries)
+%    Technicolor,  Eastmancolor,  Warnercolor,   Metrocolor      Anscocolor
+\def\Tcol{Tcol} \def\Ecol{Ecol} \def\Wcol{Wcol} \def\Mcol{Mcol} \def\Acol{Acol}
+% Fujicolor     DeLuxe              DuArt              Movieab
+\def\Fcol{Fcol} \def\DeLuxe{DLcol} \def\DuArt{DAcol}  \def\Movielab{MVcol}
+\def\Cinemascope{Cscp} 
+\def\Pan{PnVis}  \def\PT{P-Tcol}   \def\Vistavision{VsVis}
+% M(composer), B(author), X(ArtDirector), C(Cinematographer), W(Script writer)
+% P(playwright)
+% \def\Am{American}  \def\Br{British}   \def\Ir{Irish}    \def\Ca{Canadian}
+% \def\Fr{French}    \def\Be{Belgian}   \def\Ge{German}   \def\Du{Dutch}
+% \def\It{Italian}   \def\Gr{Greek}     \def\Sp{Spanish}  \def\Da{Danish}
+% \def\Sw{Swedish}   \def\Zw{Swiss}     \def\Os{Austrian} \def\Au{\Australian}
+% \def\Cz{Czech}     \def\Hu{Hungarian} \def\Ru{Russian}  \def\Yu{Yugoslav}
+% \def\Ch{Chinese}   \def\Ja{Japanese}  \def\In{Indian}
+% \def\Bz{Brazilian} \def\Me{Mexican}  
+\def\Am{Am. }      \def\Br{Brit}      \def\Ir{Ir.}     \def\Ca{Can }  
+\def\PR{P.R.}
+\def\Fr{Fr. }      \def\Ge{Ger.}      \def\Be{Bel.}     \def\Du{Dut.}
+\def\It{It. }      \def\Gr{Grk.}      \def\Sp{Span}     \def\Da{Dan.}   
+\def\Sw{Swe }      \def\Zw{Swi.}      \def\Os{\"Ost.}   \def\Au{Aus.}
+\def\Cz{Cz. }      \def\Ru{Rus.}      \def\Hu{Hun.}     \def\Yu{Yug.}
+\def\Po{Pol.}      \def\Ro{Rou.}      \def\No{Nor.}     \def\Ho{Hol.}
+\def\Ch{Ch. }      \def\Ja{Jap.}      \def\In{Ind.}     \def\Is{Isr.}
+\def\Me{Mex }      \def\Bz{Brzl}      \def\Ar{Arg.}     \def\Ko{Kor.}
+\def\SA{S.A.}	   \def\NZ{N.Z.}
+\def\GB{Great Br.}
+
+% social relationships
+\def\Mt{{$\infty$}} \def\Lw{{\sl-8-}}
+ \def\Ch{\shortownfrom} \def\Pa{\shortownto} \def\Si{{$\Leftrightarrow$}}
+% working relationships
+\def\Ww{Ww:}        \def\In{Infl:}  \def\Fd{Founded:}
+
+\def\ds#1{(ds:#1)}  % seen [dd[MMM]]yy
+\def\vt{VT}         % have video tape
+
+\def\Legend{{
+Legend for notes: \hskip10pt plus 20pt \break
+Alias(other professional names) \break
+Also(other professions) \break
+B(Book or Play Author) \hskip10pt plus 20pt \break
+% BS was (Brother or Sister of) use Si() \hskip10pt plus 20pt \break
+C(Cinematographer)\hskip10pt plus 20pt \break
+CoD(CoDirector)\hskip10pt plus 20pt \break
+Ch(child of) \hskip10pt plus 20pt \break
+Chor(choreographer) \hskip10pt plus 20pt \break
+Cost(Cost (M dols)) \hskip10pt plus 20pt \break
+E(Editor)\hskip10pt plus 20pt \break
+Er(Possible Error)\hskip10pt plus 20pt \break
+Fd(founder of)\hskip10pt plus 20pt \break
+Ge(F) Female producer or director \hskip10pt plus 20pt \break
+In(influenced)\hskip10pt plus 20pt \break
+Inc(income (M dols))\hskip10pt plus 20pt \break
+Lw(Lived with)\hskip10pt plus 20pt \break
+M(composer)\hskip10pt plus 20pt \break
+Mainly(principal profession)\hskip10pt plus 20pt \break
+Mt(Married to) \hskip10pt plus 20pt \break
+Nt(note) \hskip10pt plus 20pt \break
+Pt(parent of) \hskip10pt plus 20pt \break
+Ph(physical characteristics, as height, weight, .. )\hskip10pt plus 20pt \break
+X(art Director)\hskip10pt plus 20pt \break
+Si(Brother or Sister of) \hskip10pt plus 20pt \break
+St(studio) \hskip10pt plus 20pt \break
+Ty(typical style)\hskip10pt plus 20pt \break
+VE(Visual Effects)\hskip10pt plus 20pt \break
+W(writer)\hskip10pt plus 20pt \break
+Ww(worked with)\hskip10pt plus 20pt
+}}%end Legend
+% -------------------  end   -------------------------
+

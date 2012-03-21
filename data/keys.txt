@@ -1,0 +1,12 @@
+Base keys  id   mark  back  forwd  null low caps  UPPER   del   join   align split
+Movies.txt                             (on NT onlyon)
+Key ----| F1    F2    F3    F4   | F5   F6   F7    F8    | F9    F10    F11    F12  |
+-no add | HELP  mov   entry REPT | tmpd COUN cap   SELAL | unus  WIND   fndtd  save |
+alt new | dir   main  cast  compl| act (FLIP)cap   up    | delw         td     td|  |
+ctr     |     > poplt>popnew popexist      |                       |                          |
+---------------------------------------------------------------
+Other keys |  <Z>   <B>    <L>   <K>  |  <insert>   <tab>        |
+plain      |   Z     B      L     K   |  transchr    tab         |
+ctrl       |  ???   PUid unused  kill |  unused                  |
+alt        |  temp  CPid  lower  unusd| transwd    lastwindow    |
+----------------------------------------------------------

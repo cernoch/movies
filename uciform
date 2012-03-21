@@ -1,0 +1,160 @@
+(Message inbox:86)
+Return-Path: <@hake.stanford.edu:gio@db.stanford.edu>
+Received: from Hake.Stanford.EDU by paris.ics.uci.edu id aa00466;
+          7 Jul 99 20:04 PDT
+Received: (from gio@localhost)
+	by Hake.Stanford.EDU (8.8.8/8.8.8) id UAA16018;
+	Wed, 7 Jul 1999 20:04:08 -0700 (PDT)
+Date: Wed, 7 Jul 99 20:04:07 PDT
+From: Gio Wiederhold <gio@db.stanford.edu>
+To: Stephen Bay <sbay@ics.uci.edu>
+Cc: gio@db.stanford.edu
+Subject: Re: (DBWORLD) The UCI KDD Archive
+In-Reply-To: Your message of Thu, 1 Jul 1999 11:22:57 -0500 (CDT)
+Message-ID: <CMM.0.90.4.931403047.gio@Hake.Stanford.EDU>
+
+Stephen
+The form is attached, it did not look like an on-line HTML/JAVA form,
+right?
+
+Feel free to FTP the files from www-db.stanford.edu/movies/*
+
+Gio
+ >>>>>>>>>>>>>>>>>>>
+Guidelines for Documenting Data Sets: DATA SET INFORMATION
+
+The purpose of this page is to provide detailed information on a particular
+data set to enable other researchers to use the data for a variety of analysis 
+tasks. For example, a data page might describe census data which could then be
+used for different analysis tasks such as classification or clustering.
+
+When filling out this form, simply place your answer after the point indicated
+by '>'. We will then process the form to ensure that all documentation files 
+follow a common format.
+
+
+1. Title of Data Set
+   -- Indicate the central topic of the domain.
+>  Movies
+
+2. Data Type
+   -- Indicate the type of data: multivariate, relational, time seris, 
+      sequential, images, spatial, text, time series, transactional, web data
+   -- If the data is heterogenous, list all relevant types.
+   Relational, with multi-valued fields and time-values.  Suitable for 
+   objectification and inferencing novel and social relationships.  
+   A Remakes file is suitable for testing recursive processing. 
+
+3. Abstract
+   A MAIN file listing over 10 000 films; with many older, odd, and 
+   cult films.
+   Ancilliary files, useful for joining and inferencing on CASTS, 
+   ACTORS, PEOPLE, as directors and some producers etc, REMAKES, 
+   and some data on STUDIOS.  Detailed descriptions of the fields 
+   and their formats is provided in a DOC file.  The material 
+   includes some social information, as `lived-with'  and `married to'. 
+
+4. Sources
+   (a) Original owners of database 
+    Gio Wiederhold, Stanford University, 650 725-8363 
+   <gio@cs.stanford.edu> www-db.stanford.edu/pub/movies/doc.html 
+
+   (b) Donor of database (name/snail address/phone/email/homepage)
+   Gio Wiederhold, Stanford University, 650 725-8363 >
+   <gio@cs.stanford.edu> www-db.stanford.edu/pub/movies/doc.html 
+
+5. Data Characteristics
+   The original motivation was for database class exercises, to replace
+   the boring `manager of the toy-department' queries.  Note that the
+   CASTS, refering MAIN and ACTORS is logically identical to the 
+   inventory file refering to suppliers and assemblies in the the
+   standard bill-of-materials problems.
+   Personal interests caused to be made complete for all Hitchcock 
+   movies and TV episodes.  Related films by type and actor were
+   added gradually.
+
+   Subsequent research on temporal databases caused date fields (years
+   only) to be added.  It allows testing, say,if the dates-of-work
+   of an ACTOR match the dates of the MAIN films that the CAST relation
+   shiows.  Object-oriented database features could be tested with
+   fields having multiple and two-level values, as documented in DOC.
+
+   The entries were gradually collected during course work starting 
+   about 1975 and are still being updated.  Most of the entries were 
+   manual.  The DOC file lists some of the reference works used.
+   Corrections and additions continue to be appreciated.
+
+   All Types:
+     (a) Missing Values:
+         -- Outside of key fields, missing values are common. Their
+            encoding is described in DOC.  Sometimes the data seems
+            to be unavailable, sometimes it hasn't been entered.
+            Some information, as `lived-with' is inherently incomplete.
+
+     (b) Censored data: Minor actors are ignored.
+
+     (c) Cost Information: (if applicable/available)
+         -- none
+
+     (d) Dependencies: yes, documented in detail in DOC.
+         Every MAIN film must have a director in PEOPLE.  
+         About 50 pseudo director names ahve been listed in PEOPLE 
+         to allow interesting films to with (yet) unknown directors 
+         to be entered.
+         Every CASTS entry must relate to a MAIN film entry.
+         Every ACTOR should appear in some CASTS entry, but not vv.
+
+      See DOC for more type information.
+
+   Text:
+     (a) language: Films are listed, if known, with their original
+         language title. an Alt(T: ) field provides English translations,
+         where known.
+     (c) structured: the files are structured in multiple HTML tables, 
+         and can be directly displayed by capable browsers.  The CASTS 
+         file brings many browsers to their knees.
+
+   Image: some images of actors exist, but are not included because of
+         copyright protection.
+
+6. Other Relevant Information
+
+7. Data Format
+   The current files are in HTML, to allow easy parsing to other
+   formats. An XML version is being considered.
+
+   The approximate file sizes are
+   DOC .......    50K 
+   MAIN ...... 1 145K   11 400 entries
+   PEOPLE ....   355K    3 290 entries
+   CASTS ..... 4 340K   46 000 entries
+   ACTORS ....   811K    6 800 entries
+   REMAKES ...   135K    1 278 entries
+   STUDIOS ...    26K      200 entries
+
+8. Past Usage
+    Class exercises, research test cases.
+    Has included other universities, and some database companies.
+
+9. Acknowledgements, Copyright Information, and Availability 
+  (a) copyright information
+      Held by Gio Wiederhold, 1990, 1999
+  (b) usage restrictions 
+      No usage restrictions, other than for commercial resale.
+  (c) citation requests
+      Please acknowledge the source when used: 
+      Gio Wiederhold, Stanford University.
+  (d) acknowledgements
+      Many students, family, and friends who contributed entries.
+
+10. References & Further Information
+  (a) References on Movies are listed in DOC, but the objective is
+      to have data that are easy to understand for a broad audience.
+  (b) www-db.stanford.edu/pub/movies/doc.html 
+  (c) www-db.stanford.edu/pub/movies/doc.html 
+----------------------------------------------------------------------
+
+
+
+/Gio Wiederhold/
+http://www-db.stanford.edu/people/gio.html
