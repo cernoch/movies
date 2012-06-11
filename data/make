@@ -1,0 +1,47 @@
+#!/bin/bash
+
+accents() {
+sed "s-\\\\'a-á-g;s-\\\\^a-â-g;s-\\\\~a-ã-g;s-\\\\oa-å-g"|\
+sed "s-\\\\'e-é-g;s-\\\\^e-ê-g;s-\\\\ve-ě-g;s-\\\\'i-í-g;s-\\\\^i-î-g;s-\\\\~n-ñ-g"|\
+sed "s-\\\\'o-ó-g;s-\\\\^o-ô-g;s-\\\\~o-õ-g;s-\\\\'u-ú-g;s-\\\\^u-û-g;s-\\\\'y-ý-g"|\
+sed "s-\\\\'c-ć-g;s-\\\\^c-ĉ-g;s-\\\\vc-č-g;s-\\\\vd-ď-g;s-\\\\^h-ĥ-g;s-\\\\vl-ľ-g"|\
+sed "s-\\\\'r-ŕ-g;s-\\\\vr-ř-g;s-\\\\'s-ś-g;s-\\\\^s-ŝ-g;s-\\\\vs-š-g"|\
+sed "s-\\\\vt-ť-g;s-\\\\ou-ů-g;s-\\\\^w-ŵ-g;s-\\\\^y-ŷ-g;s-\\\\'z-ź-g;s-\\\\vz-ž-g"|\
+sed 's-\\`a-à-g;s-\\`o-ò-g;s-\\`u-ù-g;s-\\`i-ì-g;s-\\`e-è-g'|\
+sed 's-\\"o-ö-g;s-\\"u-ü-g;s-\\"a-ä-g;s-\\"i-ï-g;s-\\"y-ÿ-g'|\
+\
+sed "s-\\\\'A-Á-g;s-\\\\^A-Â-g;s-\\\\~A-Ă-g;s-\\\\OA-Ĺ-g"|\
+sed "s-\\\\'E-É-g;s-\\\\^E-Ę-g;s-\\\\VE-E-g;s-\\\\'I-Í-g;s-\\\\^I-Î-g;s-\\\\~N-Ń-g"|\
+sed "s-\\\\'O-Ó-g;s-\\\\^O-Ô-g;s-\\\\~O-Ő-g;s-\\\\'U-Ú-g;s-\\\\^U-Ű-g;s-\\\\'Y-Ý-g"|\
+sed "s-\\\\'C-C-g;s-\\\\^C-C-g;s-\\\\VC-C-g;s-\\\\VD-D-g;s-\\\\^H-H-g;s-\\\\VL-L-g"|\
+sed "s-\\\\'R-R-g;s-\\\\VR-R-g;s-\\\\'S-S-g;s-\\\\^S-S-g;s-\\\\VS-Š-g"|\
+sed "s-\\\\VT-T-g;s-\\\\OU-U-g;s-\\\\^W-W-g;s-\\\\^Y-Y-g;s-\\\\'Z-Z-g;s-\\\\VZ-Ž-g"|\
+sed 's-\\`A-Ŕ-g;s-\\`O-Ň-g;s-\\`U-Ů-g;s-\\`I-Ě-g;s-\\`E-Č-g'|\
+sed 's-\\"O-Ö-g;s-\\"U-Ü-g;s-\\"A-Ä-g;s-\\"I-Ď-g;s-\\"Y-˙-g'
+}
+
+tableonly() {
+TABLE=0
+while read L; do
+  echo "$L" | grep -i "<TABLE>" > /dev/null && TABLE=1
+  [[ "$TABLE" -gt 0 ]] && echo "$L"
+  echo "$L" | grep -i "</TABLE>" > /dev/null && TABLE=0
+done
+}
+
+for F in synonyms.html; do
+  N=`echo "$F" | sed 's|.$||'`
+  T=`echo "$F" | sed 's|\..*||'`
+  cat "$F" | accents | sed 's|\~| |g'\
+           | tableonly | grep -iv '<.*TABLE>' | grep -iv '<th>' > "$N"
+  cat "$N" | while read F; do echo -n "$F" | sed 's|"|\\"|g'; done |\
+    sed 's| *<tr> *|\n|g' |\
+    sed 's|\r||g'|\
+    sed 's|^ *<td> *||'|\
+    sed 's| *<td> *|";"|g'|\
+    sed 's|";"T: *|";"|g'|\
+    sed 's|\(.*\)|"\1"|'|\
+    sed 's/;"|"$//'|\
+    sed 's|\(.*;.*;.*;.*;.*\);.*|\1|'|\
+    grep -v '^""$' > "$T.csv"
+done
