@@ -29,12 +29,12 @@ while read L; do
 done
 }
 
-for F in synonyms.html; do
+for F in actors.html synonyms.html casts.html locales.html people.html; do
   N=`echo "$F" | sed 's|.$||'`
   T=`echo "$F" | sed 's|\..*||'`
   cat "$F" | accents | sed 's|\~| |g'\
            | tableonly | grep -iv '<.*TABLE>' | grep -iv '<th>' > "$N"
-  cat "$N" | while read F; do echo -n "$F" | sed 's|"|\\"|g'; done |\
+  cat "$N" | while read F; do echo -n "$F" | sed 's|"|""|g'; done |\
     sed 's| *<tr> *|\n|g' |\
     sed 's|\r||g'|\
     sed 's|^ *<td> *||'|\
@@ -42,6 +42,11 @@ for F in synonyms.html; do
     sed 's|";"T: *|";"|g'|\
     sed 's|\(.*\)|"\1"|'|\
     sed 's/;"|"$//'|\
-    sed 's|\(.*;.*;.*;.*;.*\);.*|\1|'|\
-    grep -v '^""$' > "$T.csv"
+    sed 's/\([^"]\)$/\1"/'|\
+    grep -v '^""$' > "$T.raw.csv"
 done
+
+cat synonyms.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6 }' | sed 's/.*/"&"/g' > synonyms.csv
+cat actors.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7,$8,$9,$10 }' | sed 's/.*/"&"/g' > actors.csv
+cat casts.raw.csv | tail -n +15 | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6 }' | sed 's/.*/"&"/g' > casts.csv
+
