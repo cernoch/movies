@@ -29,24 +29,35 @@ while read L; do
 done
 }
 
-for F in actors.html synonyms.html casts.html locales.html people.html; do
+for F in actors.html synonyms.html casts.html people.html remakes.html studios.html; do
+#for F in casts.html; do
+
+  echo "File: $F" >&2
   N=`echo "$F" | sed 's|.$||'`
   T=`echo "$F" | sed 's|\..*||'`
-  cat "$F" | accents | sed 's|\~| |g'\
-           | tableonly | grep -iv '<.*TABLE>' | grep -iv '<th>' > "$N"
-  cat "$N" | while read F; do echo -n "$F" | sed 's|"|""|g'; done |\
-    sed 's| *<tr> *|\n|g' |\
-    sed 's|\r||g'|\
-    sed 's|^ *<td> *||'|\
-    sed 's| *<td> *|";"|g'|\
-    sed 's|";"T: *|";"|g'|\
-    sed 's|\(.*\)|"\1"|'|\
-    sed 's/;"|"$//'|\
-    sed 's/\([^"]\)$/\1"/'|\
-    grep -v '^""$' > "$T.raw.csv"
+  
+  pv -l "$F"\
+  | accents\
+  | sed 's|\~| |g'\
+  | tableonly\
+  | grep -iv '<.*TABLE>'\
+  | grep -iv '<th>'\
+  | while read F; do echo -n "$F" | sed 's|"|""|g'; done\
+  | sed 's| *<tr> *|\n|g'\
+  | sed 's|\r||g'\
+  | sed 's|^ *<td> *||'\
+  | sed 's| *<td> *|";"|g'\
+  | sed 's|";"T: *|";"|g'\
+  | sed 's|\(.*\)|"\1"|'\
+  | sed 's/;"|"$//'\
+  | sed 's/\([^"]\)$/\1"/'\
+  | grep -v '^""$' > "$T.raw.csv"
 done
 
+echo "finishing..." >&2
 cat synonyms.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6 }' | sed 's/.*/"&"/g' > synonyms.csv
 cat actors.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7,$8,$9,$10 }' | sed 's/.*/"&"/g' > actors.csv
-cat casts.raw.csv | tail -n +15 | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6 }' | sed 's/.*/"&"/g' > casts.csv
-
+cat casts.raw.csv | tail -n +23 | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6 }' | sed 's/.*/"&"/g' > casts.csv
+cat remakes.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7,$8 }' | sed 's/.*/"&"/g' > remakes.csv
+cat studios.raw.csv | head -n -13 | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7 }' | sed 's/.*/"&"/g' > studios.csv
+rm *.raw.csv
