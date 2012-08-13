@@ -29,12 +29,26 @@ while read L; do
 done
 }
 
-for F in actors.html synonyms.html casts.html people.html remakes.html studios.html; do
-#for F in casts.html; do
+# List all converted tables:
+{
+  echo "actors.html"
+  echo "synonyms.html"
+  echo "casts.html"
+  echo "people.html"
+  echo "remakes.html"
+  echo "main.html"
+  echo "people.html"
+  echo "studios.html"
+  
+} | while read F; do
 
   echo "File: $F" >&2
   N=`echo "$F" | sed 's|.$||'`
   T=`echo "$F" | sed 's|\..*||'`
+  
+  # Use `cat` if `pv`
+  # is not available
+  # on your machine
   
   pv -l "$F"\
   | accents\
@@ -60,4 +74,7 @@ cat actors.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3
 cat casts.raw.csv | tail -n +23 | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6 }' | sed 's/.*/"&"/g' > casts.csv
 cat remakes.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7,$8 }' | sed 's/.*/"&"/g' > remakes.csv
 cat studios.raw.csv | head -n -13 | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7 }' | sed 's/.*/"&"/g' > studios.csv
+cat people.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7,$8,$9 }' > people.csv
+cat main.raw.csv | awk -F '(^")|(";")|("$)' 'BEGIN {OFS="\";\""} { print $2,$3,$4,$5,$6,$7,$8,$9,$10 }' > main.csv
 rm *.raw.csv
+

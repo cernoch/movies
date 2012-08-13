@@ -16,7 +16,6 @@ have been cleaned up and converted from HTML to CSV.
   - `remakes.csv`
   - `studios.csv`
   - `synonyms.csv`
-- Work in progress on these files:
   - `main.html`
   - `people.html`
 
